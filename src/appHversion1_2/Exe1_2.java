@@ -3,7 +3,7 @@ package appHversion1_2;
 public class Exe1_2 {
 
 	public static void main( String[] a ) {
-		System.out.println("Mensaje de prueba para hacer una modifikcion en el repositorio");
+		System.out.println("Mensaje de prueba para hacer una modifikcion en el repositorioRAMA MASTER");
 		
 		
 		Ventaneando f = new Ventaneando();
