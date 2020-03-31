@@ -1,0 +1,13 @@
+- 241219: CREACION: Datos de CREACION. Se crea este documento para esbozar a partir de texto puro, las ideas que vayan formando o actualizando esta aplicacion. No se deben borrar datos de este documento de texto, pues cada idea debe estar registrando y en caso de sustituirla, se señalara la idea vieja derogada, debidamente relacionada con la nueva idea. Los puntos que aqui se señalen no necesariamente mantienen un orden de creacion, ni de programacion. La fecha que registran es la de redaccion.
+
+- 241219: PREVISIONES: Aun no se lanza la presente aplicacion, pero se tiene PREVISIONES de diversas soluciones a los problemas que pretendemos resolver, aqui algunos considerandos: <<escribir aqui la informacion que se ha compilado desde la gestacion de la aplicacion como idea>> 
+
+- 241219: DESCRIPCION_GENERICA: Ya se ha diseñado el programa cuya DESCRIPCION GENERICA es, una ventana con diseño BorderLayout, con el NORTE ocupado por una barra de menu, el OESTE ocupado con botonesAlContenido, y el CENTRO ocupado con el contenidoPrincipal. el ESTE y SUR desocupados.
+
+- 241219: CONTENIDO_PRINCIPAL: De acuerdo a la descripcion anterior, para cada botonAlContenido existe un panel de CONTENIDO PRINCIPAL, y en dichos paneles se mostraran las herramientas para que el usuario ingrese los datos, o en su caso recopile informacion del programa. Toda informacion de la que se habla en este punto es referente al negocio. 
+
+- 241219: AGREGAR_FORMULARIOS: Uno de los problemas que aun no se han resuelto totalmente es, ¿Como AGREGAR FORMULARIOS en la interfaz de Usuario?. Se consideran como fomularios todos los requerimientos de informacion que muestra la aplicacion al Usuario, y que tienen que ver con el negocio. Se ha determinado que los formularios tendran una clase para poder construirlos aparte, la clase FORMULARIO extiende a JPANEL. Y de acuedo con las descripcion generica, estos se muestran en la parte CENTRO del BorderLayout (diseño del panelGeneral). Ya que el centro es ocupado por varias grupos de Formularios, formando un maso de 6 cartas, cada carta contiene un array de formularios, mismo que estarán uno debajo del otro y para verlos se debera desplazar la barra del ScrollPane al que pertencezcan. Estos ultimos, todos los paneles con Barra tendran un diseño de SpringLayout, el cual es el mas adecuado para acomodar los paneles de los Formularios, y SubContenidos en general.
+
+
+
+

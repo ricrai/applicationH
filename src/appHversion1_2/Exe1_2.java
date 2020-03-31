@@ -9,7 +9,7 @@ public class Exe1_2 {
 		
 		Ventaneando f = new Ventaneando();
 		f.setTituloGral( "BIENVENIDOS A LA VERSION 1.2 DE LA APPestosa " );
-		f.setResizable( false );
+		f.setResizable( true );
 		
 		
 		
