@@ -29,7 +29,7 @@ public class AnaLaAnalista {
 	
 	
 	
-		System.out.println( "fin del metodo constructor:AnaLaAnalista");
+		System.out.println( "termina: AnaLaAnalista(), AnaLaAnalista");
 	} //fin del metodo constructor del ANALISTER
 
 	
@@ -48,6 +48,7 @@ public class AnaLaAnalista {
 		 * */
 		
 		
+		System.out.println( "termina: esArbolante(), AnaLaAnalista" );
 		return laNtflx;
 	}//fin del metodo boolean esArbolante?
 	
@@ -105,8 +106,7 @@ public class AnaLaAnalista {
 		
 		
 		
-		System.out.println( "fin del metodo intentarArchivosCharStream:AnaLaAnalista" );
-
+		System.out.println( "termina: intentarXCharStreams(), AnaLaAnalista" );
 		return binar;
 	}//fin del metodo intentarArchivoxFlujodeChar
 
@@ -199,7 +199,7 @@ public class AnaLaAnalista {
 		
 
 		
-		
+		System.out.println( "termina: obtenerArraysdStr(), AnaLaAnalista" );
 		return cadenasRetrn;
 	}//fin del metodo ObtenerArrays de un archivo
 
@@ -227,7 +227,7 @@ public class AnaLaAnalista {
 			e.printStackTrace();
 		}//fin del bloque TRY-Catch
 		
-				
+		System.out.println( "termina: intentarCrearArchivoBlanko(), AnaLaAnalista" );
 		return valDeRet;
 	} //fin del metodo 
 	 
@@ -243,6 +243,8 @@ public class AnaLaAnalista {
 		valorDeRetorno = supuestoArchi.exists();
 		System.out.printf("%s ", supuestoArchi.exists()? "SI SE HA ENCONTRADO EL ARCHIVO!!":"NO SE HA ENCONTRADO EL ARCHIVO!!" );
 		
+		
+		System.out.println( "termina: versieisteArchivoEnCarpeta(), AnaLaAnalista" );
 		return valorDeRetorno;
 	}//fin del metodo BUSCAR ARCHIVO EN LA CARPETAic static boolean intentarCrearArchivoBlanko( String s ) { //recibe por parametro EL PURITITO NOMBRE del archivo, considerar si se está usando ruta absoluta o relativa 
 	

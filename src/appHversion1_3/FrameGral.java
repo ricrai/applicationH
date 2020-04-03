@@ -16,16 +16,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class FrameGral extends JFrame implements ActionListener {
 
 	
 	private static final long serialVersionUID = 1L; //autojenerado x sistema
 
-	private PanelUnikoydif pnCentralUnikoydif;
+	private PanelUnikoydif pnlCentral;
 	private JPanel pnCentralContras;
 	private CardLayout barajaAcceso;
-	private String textoEnTitl;
+	private String textoEnTitl = "TEXTOX DEFECTUOSO";
 	private Dimension dimensionHrdw;
 	private AnaLaAnalista analister;
 	private String unDocCualquiera = "nuevoDocumentoDePrueba.txt"; //cadena que representa SOLAMENTE EL EL NOMBRE del archivo que se está probando
@@ -33,27 +34,39 @@ public class FrameGral extends JFrame implements ActionListener {
 	
 	public FrameGral() {
 		this.inicilizarAtributosYconfigInic(); // 1) PRIMERITO DE TODOS LO METODOS, se deben tener la menor cantidad de metodos invocados aqui en el constructor para reducir las lineas de codigo, y aumentar lo entendibilidad 
-		this.intentarMovidaxd();	
-		this.pnCentralUnikoydif.establecerListenersFull( this );
+	
+		this.pnlCentral.establecerListenersFull( this ); //los objetos que pertenecen al o
 		
-		System.out.println( "fin del constructor:FrameGral" );
+		
+		/*
+		this.pnlCentral.getBarraNort().getBotonAxion().addActionListener( new ActionListener() { //agrega listener al boton de la barra norte
+				public void actionPerformed( ActionEvent e ) {
+					System.out.println( "SE HA DESENCADENADO UN EVENTO EL BOTON DE AXION: " + e.getActionCommand() + "\n" + e.toString() );
+					
+				}//FIN DEL METODO ACCION REALIZADA
+		} ); //fin de la clase interna Anonimus
+		*/
+		
+		System.out.println( "termina: FrameGral(), FrameGral" );
 	}//fin del constructor
 
 	
 	private void inicilizarAtributosYconfigInic() {
-		this.pnCentralUnikoydif = new PanelUnikoydif();
+		//INICILIZACIONES DE ATRIBUTOS
+		this.pnlCentral = new PanelUnikoydif(); //manda a llamar al constructor que hace mucho para dibujar la mayor parte de la interfaazGraf
 		this.pnCentralContras = new JPanel(); //hacer una clase especial que pretenda mejorar la seguridad del programa
 		this.analister = new AnaLaAnalista(); //clase que hace todo tipo de calculos y backend
 		this.barajaAcceso = new CardLayout( 20,20 ); //Auxiliar del panelDeContraseñas
 		this.dimensionHrdw = new Dimension( 1000,700 ); //Dimension del hardware, o mas bien de la pantalla 
-		this.textoEnTitl = "textoXdefectuoso";
+		//CONFIGURACIONES GENERALES
 		this.setTitle( this.textoEnTitl );
 		this.setVisible( true );
 		this.setBounds( 0, 0, 1000, 700);
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		this.add( pnCentralUnikoydif );		
+		this.add( pnlCentral );		
 		
-		System.out.println("fin del metodo inicializarAtbs:FrameGral");
+		
+		System.out.println("termina: inicilizarAtributosYconfigInic(), FrameGral" );
 	} //fin del metodo privado inicializar atributos
 	
 	private void intentarMovidaxd() { //metodo para probar codigo..... 
@@ -61,9 +74,7 @@ public class FrameGral extends JFrame implements ActionListener {
 		boolean b = AnaLaAnalista.versiexisteArchivoEnCarpeta( this.unDocCualquiera ); 
 		if ( b ) {
 			for( int i=0;i<1;i++ ) System.err.println( "SI_EXISTE!!!!!!!.jpg" );
-			System.out.println( "Se ha encontrado el archivo, vea el contenido de la CONSOLADEUSUARIO para vislumbralo o.o " );
-			
-			
+				
 			//si existe entonces se muestra EN LA CONSOLA_DE_USUARIO en la parte Oriente del panel, el historial que contenga la consulta y el archivo, preferentemente con la hora prox
 			
 		}else {
@@ -78,12 +89,12 @@ public class FrameGral extends JFrame implements ActionListener {
 		}//fin del IF-ELSE
 		
 	
-		
+		System.out.println("termina: intentarMovida(), FrameGral" );
 	}//fin del metodo intentar movida que se usa para probar algun tipo de codice, que luego se pretenda mover a otro bloque de codigo
 
 	
 	public int identifBoton( ActionEvent e ) {
-		String st[] = pnCentralUnikoydif.getnomb_botonesIzqPROVISIONAL();
+		String st[] = pnlCentral.getnomb_botonesIzqPROVISIONAL();
 		int forRetorno = -1;
 		
 		if( e.getActionCommand()==st[0] ) forRetorno = 0;
@@ -93,6 +104,7 @@ public class FrameGral extends JFrame implements ActionListener {
 		if( e.getActionCommand()==st[4] ) forRetorno = 4;
 		if( e.getActionCommand()==st[5] ) forRetorno = 5;
 		
+		System.out.println("termina: identifBoton(), FrameGral" );
 		return forRetorno;
 	}//fin del metodo
 	
@@ -100,8 +112,17 @@ public class FrameGral extends JFrame implements ActionListener {
 	
 	
 	public void actionPerformed( ActionEvent e ) {
-		System.out.println( "Se ha desencadenado un evento from: " + e.toString() );
-		this.pnCentralUnikoydif.getCartas01().show( pnCentralUnikoydif.getPanelCentro() , pnCentralUnikoydif.getnomb_botonesIzqPROVISIONAL()[ identifBoton( e ) ] );
+		System.out.println( "ebento from: " + e.toString() );
+		
+		String st[] = pnlCentral.getnomb_botonesIzqPROVISIONAL();		
+		Boolean b = ( identifBoton(e)>=0 )&&( identifBoton(e)<6 );		
+		if( !b ) {
+			System.err.println( "BOTON NO IDENTIFICADO" );
+		} else {
+			this.pnlCentral.getCartas01().show( pnlCentral.getPanelCentro(), st[ identifBoton(e) ] );
+		}//fin del IF-ELSE
+				
+		System.out.println( "termina: actionPerformed(), FrameGral" );
 	}//fin del meotodo "Axion Realizada"
 	
 

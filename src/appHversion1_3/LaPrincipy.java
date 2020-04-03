@@ -9,14 +9,12 @@ public class LaPrincipy {
 	
 	
 	public static void main(String[] args) {
-		
-		System.out.println( "inicio correcto, main:LaPrincipy" );
 		FrameGral fg = new FrameGral();
 
 		
 		
 		
-		System.out.println( "fin del metodo main:Laprincipy" );
+		System.out.println( "termina: main(), LaPrincy" );
 	} //fin del metodo main
 
 	 
