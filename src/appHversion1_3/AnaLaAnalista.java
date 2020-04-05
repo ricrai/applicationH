@@ -194,7 +194,6 @@ public class AnaLaAnalista {
 			
 		}else {
 			System.out.println( "NO EXISTE" );
-			//cadenasRetrn = null;
 		}//fin del IF-ELSE
 		
 

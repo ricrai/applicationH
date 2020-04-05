@@ -37,16 +37,6 @@ public class FrameGral extends JFrame implements ActionListener {
 	
 		this.pnlCentral.establecerListenersFull( this ); //los objetos que pertenecen al o
 		
-		
-		/*
-		this.pnlCentral.getBarraNort().getBotonAxion().addActionListener( new ActionListener() { //agrega listener al boton de la barra norte
-				public void actionPerformed( ActionEvent e ) {
-					System.out.println( "SE HA DESENCADENADO UN EVENTO EL BOTON DE AXION: " + e.getActionCommand() + "\n" + e.toString() );
-					
-				}//FIN DEL METODO ACCION REALIZADA
-		} ); //fin de la clase interna Anonimus
-		*/
-		
 		System.out.println( "termina: FrameGral(), FrameGral" );
 	}//fin del constructor
 

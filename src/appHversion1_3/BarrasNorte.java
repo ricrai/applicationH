@@ -38,8 +38,7 @@ public class BarrasNorte extends JPanel{
 
 
 	public BarrasNorte() {
-		
-		
+				
 		this.setBackground( Color.YELLOW );
 		this.setVisible( true );
 		this.setLayout( new SpringLayout() );
@@ -67,11 +66,11 @@ public class BarrasNorte extends JPanel{
 		JMenu m[] = new JMenu[5];
 		JMenuItem it[] = new JMenuItem[9];
 		String s01[] = {
-				"menu5",
-				"menu234",
-				"menu2",
-				"menuasd",
-				"menu324" };
+				"-ARCHIVO-",
+				"-EDITAR-",
+				"-VER-",
+				"-HERRAMIENTAS-",
+				"-USUARIO-" };
 		String s02[] = {
 				"item456",
 				"item20",

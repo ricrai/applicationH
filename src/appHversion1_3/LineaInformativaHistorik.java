@@ -38,7 +38,7 @@ public class LineaInformativaHistorik extends JPanel{
 		
 //inicializar atributos de objeto
 		this.txtAmostrar = " texto por defecacion ";
-		this.campoTx = new JTextArea( this.txtAmostrar, 10, 5 );
+		this.campoTx = new JTextArea( this.txtAmostrar, 15, 1 );
 		this.axionBtn = new JButton( new ImageIcon( this.dirImg[1] ) ); //agregar el icono a este boton, eir pensando en su listener
 
 //CONFIGIRACIONES PRECONDICIONALES		
@@ -50,10 +50,11 @@ public class LineaInformativaHistorik extends JPanel{
 		this.add( axionBtn );	
 
 //CONFIGURACIONES Y AGREGACIONES DE OTROS OBJETOS NOPRINCIPALES¿		
-		this.campoTx.setEditable( false );
+		this.campoTx.setEditable( true );
+		this.campoTx.setWrapStyleWord( true );
 		this.campoTx.setToolTipText( "aver donde vergas me sale este puto texto donde menos se lo espera 1" );
-		this.campoTx.setBorder( BorderFactory.createLineBorder( Color.cyan , 3, true) );
-		this.campoTx.setAutoscrolls( true );
+		
+		this.setBorder( BorderFactory.createCompoundBorder( BorderFactory.createMatteBorder(5, 5, 1, 1, Color.RED),BorderFactory.createBevelBorder(2) ) );
 		
 		System.out.printf( "La configuracion esta de la siguiente manera \n%s \n%s \n%s \n\n", campoTx.isMinimumSizeSet(), campoTx.isMaximumSizeSet(), campoTx.isPreferredSizeSet() );
 		System.out.println( "termina: darAspectoVis(), LineaInformativaHistorik" );

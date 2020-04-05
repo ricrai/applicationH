@@ -11,8 +11,12 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -21,6 +25,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -30,17 +35,18 @@ public class PanelUnikoydif extends JPanel {
 	
 	private CardLayout sistDeCartas01, sistDeCartas02;
 	private JPanel pOriente, pCentro, pPoniente, pNorte, pSur; //los paneles se encuentran insertados en los sus respectivos lugares dentro del panelUniko con BorderLayout. EXCEPTO los paneles CENTRO y ORIENTE los cuales estan insertados en un objeto de tipo JSlplitPane a su vez incrustado en la ubicacion CENTRO del panel con BorderLAyout( panelUniko )
-	private JSplitPane splitCentral;
-	private BarrasNorte unaBarra;
+	private JSplitPane splitCentral= new JSplitPane( JSplitPane.HORIZONTAL_SPLIT );
+	private BarrasNorte unaBarra = new BarrasNorte();
 	
-	private JPanel panelKonteNidos[]; //cada panel corresponde a un boton
-	private Color kolors[]; //cada uno de estos colores corresponde a un panelKontenido
-	private JButton botonesIzk[]; //panelesCentrales, kolores, botonesIzq, nombresdBotones, VAN RELACIONADOS DIRECTAMENTE SEGUN SU INDICE, PUES TODOS SON ARRAYS DE 6 ELEMENTOS
+	private JPanel panelKonteNidos[] = new JPanel[6]; //cada panel corresponde a un boton
+	private Color kolors[] = new Color[6]; //cada uno de estos colores corresponde a un panelKontenido
+	private JButton botonesIzk[] = new JButton[6]; //panelesCentrales, kolores, botonesIzq, nombresdBotones, VAN RELACIONADOS DIRECTAMENTE SEGUN SU INDICE, PUES TODOS SON ARRAYS DE 6 ELEMENTOS
 	private String nomb_botonesIzkPROVISIONAL[] = { "Configuraciones", "Inicio", "Inventarios", "Laboral", "Registros", "Reportes"  } ;
 	
-	private JPanel panelHistorial[]; //array de un solo elemento, puede crecer
+	private JPanel panelHistorial[] = new JPanel[1]; //array de un solo elemento, puede crecer
+	private JScrollPane scrollHistoryal[] = new JScrollPane[1];
 	private String nombs_PanelHistorial[] = { "convocador01" }; //array con un solo elemento, puede crecer con panelHistorial
-	private ArrayList <LineaInformativaHistorik> listaHist;
+	private ArrayList <LineaInformativaHistorik> listaHist = new ArrayList<LineaInformativaHistorik>();;
 	public static int conteo = 0;
 	
 	
@@ -49,12 +55,18 @@ public class PanelUnikoydif extends JPanel {
 	public PanelUnikoydif() {
 		
 		this.prepararParaInicTodo();
-		this.configurarStaClaseforInic(); //se manda a llamar un METODO PRIVADO	private panel
-			
+		
 		this.ajustesPNorte();
 		this.ajustesPPoniente();
 		this.ajustesPCentro();
 		this.ajustesPOriente();
+		
+		this.configurarStaClaseforInic(); //ya estando construidos los paneles, por ultimo se agregan a este objeto PanelUnico
+		
+		
+		
+		
+		
 			//--- ---- -- Cod: 342
 		//insertarAquiCualquierCodigoDePrueba();
 			//--- ---- --
@@ -84,9 +96,17 @@ public class PanelUnikoydif extends JPanel {
 				"src/appHversion1_3/Icono05Registr.png",
 				"src/appHversion1_3/Icono06Reportes.png" 
 				};		
+		this.kolors[0] = new Color( 255,255,255 ); //blanquito
+		this.kolors[1] = new Color( 255,251,137 ); //Amarillo 
+		this.kolors[2] = new Color( 156,231,255 ); //azul 
+		this.kolors[3] = new Color( 255,186,186 ); //rojito
+		this.kolors[4] = new Color( 166,255,135 ); //verde
+		this.kolors[5] = new Color( 214,214,214 ); //negrogris
 		for( int i=0;i<6;i++ ) this.botonesIzk[i].setIcon( new ImageIcon( dirImg[i] ) );
 		for( int i=0;i<6;i++ ) this.botonesIzk[i].setHorizontalTextPosition( SwingConstants.CENTER );
 		for( int i=0;i<6;i++ ) this.botonesIzk[i].setVerticalTextPosition( SwingConstants.BOTTOM );
+		for( int i=0;i<6;i++ ) pPoniente.add( botonesIzk[i] ); //agrega los botones de contenido
+		for( int i=0;i<6;i++ ) botonesIzk[i].setBackground( kolors[i] );
 		
 		System.out.println( "termina: ajustesPPoniente(), PanelUnikoydiff" );
 	}//fin del metodo
@@ -94,41 +114,54 @@ public class PanelUnikoydif extends JPanel {
 	private void ajustesPOriente() { //modificando todo lokes es el panel Historiko, sus eventos etc, lo menos codigo posible xfa
 		this.panelHistorial[0].setLayout( new BoxLayout( panelHistorial[0],1 ) );
 		this.crearAgregarLinea( "SE HA INICIADO SESION, POR EL USUARIO" );
-		this.crearAgregarLinea( "hola" );
+	
 		
 		
 		System.out.println( "termina: ajustesPOriente(), PanelUnikoydiff" );
 	}//fin del metodo privado
 	
 	private void ajustesPNorte() { //ajustando todo lokes la barra de menu, acciones de usuario etc. lo -- codigo posible xfa
-//1) DECLARAMOS VARIABLES DESECHABLES
 		this.pNorte.add( unaBarra ); //se agrega en el sistemaGridLayout de 1x1
 		unaBarra.getBotonAxion().addActionListener( new ActionListener() {
 			public void actionPerformed( ActionEvent e ) {
-				crearAgregarLinea( "Nueva Linea num: " + conteo + ",\nnueva historia, nuevo todo" );
+				crearAgregarLinea( "Nueva Linea num: " + conteo + ",\nnueva historia, nuevo todo\nFECHA:\t" +  LocalDate.now() + "\n HORA:\t " + LocalTime.now() + "\n con presicion de micro segundos..." );
+				
+//aqui insertar un metodo que captura los datos necesarios del sistema operativo o bien de internet, pero que obtenga una hora exacta con presicion de segundos y la muestre tanto en pantalla como en el objeto de tipo JTextArea
+				
+				
 			}
-			
 		} );//fin de clase interna anonima LISTENER
 		
-//2) HACEMOS ALGUNAS CONDIGURACIONES AL OBJETO PRINCIPAL QUE ES EL PANEL NORTE Y SUS CONTENIDOS
 		
-		
-//3) HACEMOS ALGUNAS AGREGACIONES DEL OBJETO PRINCIPAL DEL METODO
-	
 		System.out.println( "termina: ajustesPNorte(), PanelUnikoydiff" );
 	}//fin del metodo privado
 	
 	
 	private void ajustesPCentro() { // ajustando todo lo que es el contenido y subcontenidos y sus eventos etc. el --- codigo posible xfavor!
+		for( int i=0;i<6;i++ ) panelKonteNidos[i].add( new JLabel( "ETIQUETA PARA EL PANEL: " + i ) ); // agregar unaetiqueta informativa
+		for( int i=0;i<6;i++ ) pCentro.add( panelKonteNidos[i], nomb_botonesIzkPROVISIONAL[i] ); //agrega cartas al siste de cartas del CENTRO
+		for( int i=0;i<1;i++ ) pOriente.add( scrollHistoryal[i], nombs_PanelHistorial[i] ); // agrega al sistema de cartas al objeto de tipo ScrollPanel del ORIENTE
+		for( int i=0;i<6;i++ ) panelKonteNidos[i].setBackground( kolors[i] );
+		
+		
+		this.splitCentral.setLeftComponent( pCentro );
+		this.splitCentral.setRightComponent( pOriente ); //recordad que cualquier intento de meter mas de un lemento en los JSplitPane, arrojará un error o una excepcion
+		this.splitCentral.setOneTouchExpandable( true );
+		this.splitCentral.setEnabled( true );		
+		
+		this.scrollHistoryal[0].setVerticalScrollBar( scrollHistoryal[0].createVerticalScrollBar() );
+		this.scrollHistoryal[0].setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
+		this.scrollHistoryal[0].setViewportView( panelHistorial[0] );
+		this.scrollHistoryal[0].setBackground( Color.GREEN );
 		
 		System.out.println( "termina: ajustesPCentro(), PanelUnikoydiff" );
 	}//fin del metodo private 
 
 	
 	public void crearAgregarLinea( String s ) { //
-		
 		this.listaHist.add( new LineaInformativaHistorik() );
 		this.panelHistorial[0].add( listaHist.get( conteo ));
+		this.panelHistorial[0].add( Box.createVerticalStrut( 10 ) );
 		listaHist.get( conteo ).getCampotxt().setText( s );
 		System.out.println( "LLEVAMOS AGREGADAS: >>" + (conteo+1) + "<< LINEAS HISTORICAS EN ESTA SESION" + "\n\n" );
 		
@@ -141,7 +174,6 @@ public class PanelUnikoydif extends JPanel {
 		
 	private void configurarStaClaseforInic() { //se encarga que este objeto heredero de JPanel se configure en tamaño, color, y generales etc
 		this.setLayout( new BorderLayout( 10,10 ));
-		this.setBackground( Color.DARK_GRAY );
 		this.add( splitCentral, BorderLayout.CENTER ); //en el panel de centro no se inserta un panel, se inserta un splitPanel donde cabe lo del CENTRO + del del ORIENTE 
 		this.add( pPoniente, BorderLayout.WEST );
 		this.add( pNorte, BorderLayout.NORTH );	
@@ -149,64 +181,28 @@ public class PanelUnikoydif extends JPanel {
 	}//FIN DEL METODO PRIVADO
 	
 	
-	//METODO MODELo!!!!!!!!!!!!!!!!!!
+	
 	public void prepararParaInicTodo() { //ESTE METODO PREPARA, O MANDA A PREPARAR A CADA UNO DE LOS ATRIBUTOS DE LA CLASE, PARA QUE TENGAN UNA CONFIGURACION MINIMA XDEFECTO PARA AGREGARSE POSTERIORMENTE EN LA CLASE QUE LA CONTIENE.
 		//POR LO TANTO NO CONVOCAR AKI A NINGUNA METODO DE LA CLASE CONTENERA (PanelUnikoYDiff)
 
-//DECLARACION DE ALGUNAS VARIABLES DESECHABLES 
-		Dimension dimMin = new Dimension( 200, 300 ); //tamanho minimo para cada uno de los elementos del splitpanel
-		
-//INICIALIZACIONES-CONSTRUCCIONES:
-		this.kolors = new Color[6];
-		this.panelKonteNidos = new JPanel[6]; 
-		this.panelHistorial = new JPanel[1];
-		this.botonesIzk = new JButton[6]; 
-		this.unaBarra = new BarrasNorte();
-		this.listaHist  = new ArrayList<LineaInformativaHistorik>();
-		this.kolors[0] = new Color( 255,255,255 ); //blanquito
-		this.kolors[1] = new Color( 255,251,137 ); //Amarillo 
-		this.kolors[2] = new Color( 156,231,255 ); //azul 
-		this.kolors[3] = new Color( 255,186,186 ); //rojito
-		this.kolors[4] = new Color( 166,255,135 ); //verde
-		this.kolors[5] = new Color( 214,214,214 ); //negrogris
+
+//INICIALIZACIONES-CONSTRUCCIONES, de los atributos que requieren inicializacion especial
 		for( int i=0;i<6;i++ ) panelKonteNidos[i] =  new JPanel();  //un panel destos para cada boton del Poniente
 		for( int i=0;i<1;i++ ) panelHistorial[i] = new JPanel(); //existe un solo lemento en el Array, pero pueden ser mas
+		for( int i=0;i<1;i++ ) scrollHistoryal[i] = new JScrollPane(); //existe un solo lemento en el Array, pero pueden ser mas
 		for( int i=0;i<6;i++ ) botonesIzk[i] = new JButton( nomb_botonesIzkPROVISIONAL[i] ); //un boton que deberá estar personalizado y tener un logotipo
-
-		//for( int i=0;i<20;i++ ) listorial.add( new LineaInformativaHistorik() );
-		
-		this.splitCentral = new JSplitPane( JSplitPane.HORIZONTAL_SPLIT );
 		this.pOriente = new JPanel( new CardLayout( 20,20 ) ); 
-		this.pCentro = new JPanel( new CardLayout( 20,20 ) ); 
-		this.sistDeCartas01 = (CardLayout)pCentro.getLayout(); //inicializa y da valor al atributo
-		this.sistDeCartas02 = (CardLayout)pOriente.getLayout(); //inicializa y da valor al atributo
+		this.pCentro = new JPanel( new CardLayout( 20,20 ) );
 		this.pPoniente = new JPanel( new GridLayout( 6,1 ) ); //Contiene el menu de 6botones que pertenece a cada Kontenido
 		this.pNorte = new JPanel( new GridLayout( 1,1 ) ); //Correcto
+		this.pSur = new JPanel();
+		this.sistDeCartas01 = (CardLayout)pCentro.getLayout(); //inicializa y da valor al atributo
+		this.sistDeCartas02 = (CardLayout)pOriente.getLayout(); //inicializa y da valor al atributo
 		
 //AGRAGACIONES DE LOS OBJETOS ANTES INICIADOS:
-		for( int i=0;i<6;i++ ) pPoniente.add( botonesIzk[i] ); //agrega los botones de contenido
-		for( int i=0;i<6;i++ ) panelKonteNidos[i].add( new JLabel( "ETIQUETA PARA EL PANEL: " + i ) ); // agregar unaetiqueta informativa
-		for( int i=0;i<6;i++ ) pCentro.add( panelKonteNidos[i], nomb_botonesIzkPROVISIONAL[i] ); //agrega cartas
-		for( int i=0;i<1;i++ ) pOriente.add( panelHistorial[i], nombs_PanelHistorial[i] ); // agrega paneles de diferentes tiposHistoricos
+		this.sistDeCartas01.show( pCentro , nomb_botonesIzkPROVISIONAL[3] ); 
+		this.sistDeCartas02.show( pOriente , nombs_PanelHistorial[0] ); 
 		
-//CONFIGURACIONES DE LOS OBJETOS AKI USADOS
-		
-		
-			//-- - Cod 21
-		//insertar aqui el codigo de prueba
-			//-- -
-		
-		this.sistDeCartas01.show( pCentro , nomb_botonesIzkPROVISIONAL[3] );
-		this.sistDeCartas02.show( pOriente , nombs_PanelHistorial[0] );
-		this.panelHistorial[0].setBackground( Color.MAGENTA );
-		this.pOriente.setMinimumSize( dimMin );
-		this.pCentro.setMinimumSize( dimMin );
-		for( int i=0;i<6;i++ ) botonesIzk[i].setBackground( kolors[i] );
-		for( int i=0;i<6;i++ ) panelKonteNidos[i].setBackground( kolors[i] ); ;
-		this.splitCentral.setLeftComponent( pCentro );
-		this.splitCentral.setRightComponent( pOriente ); //recordad que cualquier intento de meter mas de un lemento en los JSplitPane, arrojará un error o una excepcion
-		this.splitCentral.setOneTouchExpandable( true );
-		this.splitCentral.setEnabled( true );		
 	
 		System.out.println( "termina: prepararParaInicTodo(), PanelUnikoydiff" );
 	} //fin del metodo preparar para iniciar todo
@@ -214,9 +210,6 @@ public class PanelUnikoydif extends JPanel {
 	
 	public void establecerListenersFull( ActionListener aL ) {
 		for( int i=0;i<6;i++ ) botonesIzk[i].addActionListener( aL ); //botones que al accionar cambian el contenido del centro
-		
-//		JButton btnNort = (JButton)this.getPanelNorte().getComponent( 1 );
-//		btnNort.addActionListener( aL );
 		System.out.println( "termina: establecerListenersFull(), PanelUnikoydiff" );
 	}//fin del metodo
 	
