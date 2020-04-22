@@ -1,0 +1,23 @@
+                     
+NUM:3	F: 2020-04-22	H: 12:26:02.401521	SHELL: @us: problema del contador                     
+NUM:1	F: 2020-04-22	H: 12:30:07.921028	SHELL: @us: 1                    
+NUM:2	F: 2020-04-22	H: 12:30:08.281058	SHELL: @us: 1                   
+NUM:3	F: 2020-04-22	H: 12:30:21.482147	SHELL: @us: probando probando creo que ya se soluciono el problem                  
+NUM:4	F: 2020-04-22	H: 12:30:22.020507	SHELL: @us: xd                 
+NUM:5	F: 2020-04-22	H: 12:30:22.312263	SHELL: @us: xd                
+NUM:6	F: 2020-04-22	H: 12:30:22.661413	SHELL: @us: x               
+NUM:7	F: 2020-04-22	H: 12:30:22.901232	SHELL: @us: d              
+NUM:8	F: 2020-04-22	H: 12:30:23.133631	SHELL: @us: xd             
+NUM:9	F: 2020-04-22	H: 12:30:23.336460	SHELL: @us:             
+NUM:10	F: 2020-04-22	H: 12:30:23.540509	SHELL: @us: s           
+NUM:11	F: 2020-04-22	H: 12:30:24.746825	SHELL: @us: s          
+NUM:12	F: 2020-04-22	H: 12:30:27.340410	SHELL: @us: una ves +         
+NUM:13	F: 2020-04-22	H: 12:30:27.793238	SHELL: @us:         
+NUM:14	F: 2020-04-22	H: 12:30:27.939194	SHELL: @us:        
+NUM:15	F: 2020-04-22	H: 12:30:28.105455	SHELL: @us:       
+NUM:16	F: 2020-04-22	H: 12:30:29.582182	SHELL: @us: salir     
+NUM:1	F: 2020-04-22	H: 12:32:11.554232	SHELL: @us: ps de una ves    
+NUM:2	F: 2020-04-22	H: 12:32:21.218251	SHELL: @us: si si compila de una ves asi    
+NUM:3	F: 2020-04-22	H: 12:32:23.669023	SHELL: @us: lo guardamos  
+NUM:4	F: 2020-04-22	H: 12:32:25.126876	SHELL: @us: ..... 
+NUM:5	F: 2020-04-22	H: 12:32:35.880254	SHELL: @us: ps lo guardamos alv CAMBIOYFUERA

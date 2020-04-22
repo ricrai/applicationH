@@ -9,25 +9,24 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-//TODAS LAS RESTRICCIONES Y APPUNTES DE TODAS LAS RESPECTIVAS CLASES, DEBEN IR HASTA ABAJO DEL DOCUMENTO COMO UN SOLO COMENTARIO MULTILINEA
-
-
 public class LineaInformativaHistorik extends JPanel{ 
 
 	private static final long serialVersionUID = 1L;
 	private String txtAmostrar;
 	private JTextArea campoTx;
 	private JButton axionBtn;
-	private String dirImg[] = {
-			"src/appHversion1_3/",
-			"src/appHversion1_3/IC_abrirArchivo.png" 
-			};
+
 	//declarar una fuente standar
 	//declarar bordes std con texto posiblemente
 	
+	private String d_a_Raiz = "src/appHversion1_3/"; //siglas de DIRECCION ABSOLUTA DEL DIRECTORIO RAIZ
+	private String d_r_c_Bases = "src/appHversion1_3/bases/"; //siglas de DIRECCION RELATIVA DE BASES
+	private String d_r_c_AudioVisual = "src/appHversion1_3/audioVisual/"; //siglas de DIRECCION RELATIVA DE ARCHIVOS UTILIZABLES
+	
+	
+	
 	public LineaInformativaHistorik() {
 		this.darArspectoVis(); //asigna 
-		this.darTamanhos(); //asigna dimensiones
 		
 	}//fin del constructor
 	
@@ -38,8 +37,8 @@ public class LineaInformativaHistorik extends JPanel{
 		
 //inicializar atributos de objeto
 		this.txtAmostrar = " texto por defecacion ";
-		this.campoTx = new JTextArea( this.txtAmostrar, 15, 1 );
-		this.axionBtn = new JButton( new ImageIcon( this.dirImg[1] ) ); //agregar el icono a este boton, eir pensando en su listener
+		this.campoTx = new JTextArea( this.txtAmostrar );
+		this.axionBtn = new JButton( new ImageIcon( this.d_r_c_AudioVisual + "IC_abrirArchivo.png" ) ); //agregar el icono a este boton, eir pensando en su listener
 
 //CONFIGIRACIONES PRECONDICIONALES		
 		this.setVisible( true );
@@ -53,20 +52,12 @@ public class LineaInformativaHistorik extends JPanel{
 		this.campoTx.setEditable( true );
 		this.campoTx.setWrapStyleWord( true );
 		this.campoTx.setToolTipText( "aver donde vergas me sale este puto texto donde menos se lo espera 1" );
-		
 		this.setBorder( BorderFactory.createCompoundBorder( BorderFactory.createMatteBorder(5, 5, 1, 1, Color.RED),BorderFactory.createBevelBorder(2) ) );
 		
-		System.out.printf( "La configuracion esta de la siguiente manera \n%s \n%s \n%s \n\n", campoTx.isMinimumSizeSet(), campoTx.isMaximumSizeSet(), campoTx.isPreferredSizeSet() );
 		System.out.println( "termina: darAspectoVis(), LineaInformativaHistorik" );
 	}//fin del metodo
 	
-	
-	public void darTamanhos() {
-		
-		
-		System.out.println( "termina: darTamanhos(), LineaInformativaHistorik" );
-	} //fin del metodo
-	
+
 	
 	
 	
@@ -83,28 +74,3 @@ public class LineaInformativaHistorik extends JPanel{
 	
 } //fin de toda la clase
 
-
-
-
-
-
-
-
-
-
-
-//ESTA CLASE CONTENDRA UN AREA DE TEXTO DE SOLO LECTURA, QUE AL PASAR EL MOUSE SOBRE ELLA, DÉ INFORMACION + DETALLADA Y, CONTENGA ESE MISMO PANEL UN BOTON, EL CUAL ACCIONA UNA VENTANA EMERGENTE, q CONTIENE SOLO TEXTO CON UN INFORME COMPLETO DEL EVENTO QUE ACABA DE SUCEDER	
-//ESTA CLASE SERÁ INSTANCIADA EN EL PANEL ORIENTE, EN UNA SERIE DE EVENTOS + o - grande QUE PUEDE VARIAR EN NUMERO, POR LO TANTO SE USARÁN LOS ARRAYLISTS
-//ESTA CLASE DEBE CONTENER TODOS LOS METODO NECESARIOS PARA HACER MAS CÓMODO EL MANEJO DESDE FUERA DE SUS BLOQUES DE CODIGO. PUDIENDO CAMBIAR COLORES, TAMAÑOS, ETC.
-/*COMENTARIOS Y RESTRICCIONES 
- * 
- * *****************************************************************
- * * * * * RGxx = restriccion general = "todas las clases deben seguir esta restriccion"
- * * * * * Rxx = restriccion = "algun apunte que se debe atender antes de considerar terminado el codigo de esta clase: " 
- * *****************************************************************
- * 
- * RG01: Todas las impresiones en pantalla son anuncios de cómo se va a ejecutando el codigo, son mensajes para orientacion del programador 
- * RG02: Los mensajes para orientar al usuario apareceran en un objetoGrafico, debidamente señalizados (jlabel, jpanel, etc. )
- * RG03: No consfigurar los atributos, o los miembros de los atributos desde las clases superiores
- * 
- * */

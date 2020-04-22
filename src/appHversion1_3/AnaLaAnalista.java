@@ -18,10 +18,16 @@ import java.io.FileNotFoundException;
 
 public class AnaLaAnalista {
 	
-	private String descripcionxD = "";
- 	private String nomb_direxMadre = "/home/omnitr3x3000/git/AppHotelByrat/src/appHversion1_3/"; // la direccion de la carpeta donde se encuntran guardadas todos los archivos .java, como ruta absoluta en mi sistemas de linux
- 	private String nomb_direxMadreRelativo = "src/appHversion1_3/"; //relativo a la carpeta del proyecto, misma donde se aloja el repositorio
 	//verificar si es bueno declarar un objeto STREAMER como atributo, compartiendo las diversas operaciones ese mismo objeto o, que en cada metodo de la clase se instancien Streamers temporales
+ 	//su fuerte de esta clase son los metodos static..
+ 	
+ 	
+ 	private String d_a_Raiz = "src/appHversion1_3/"; //siglas de DIRECCION ABSOLUTA DEL DIRECTORIO RAIZ
+	private String d_r_c_Bases = "src/appHversion1_3/bases/"; //siglas de DIRECCION RELATIVA DE BASES
+	private String d_r_c_AudioVisual = "src/appHversion1_3/audioVisual/"; //siglas de DIRECCION RELATIVA DE ARCHIVOS UTILIZABLES
+	
+ 	
+ 	
  	
 	
 	public AnaLaAnalista() { //constructor sin args
@@ -32,6 +38,51 @@ public class AnaLaAnalista {
 		System.out.println( "termina: AnaLaAnalista(), AnaLaAnalista");
 	} //fin del metodo constructor del ANALISTER
 
+	
+	
+	public static void escribirEnCola( String s1, String s2 ) {
+		//metodo q se le pasa por parametro la direccion de un archivo de REGISTRO, y una cadena de caracteres que se escribirá en la siguiente linea del ultimo contenido del mismo archivo, conservando lo que ya tenia
+		File supuestoArchivo = new File( s1 );
+		Scanner lector = null;
+		Formatter escritor = null;
+		try {
+	
+			if( supuestoArchivo.exists() ) {
+				System.out.println( "Claro que existe!!!!......\n....y tiene la sig. informacion: " );
+				lector = new Scanner( supuestoArchivo );
+				int cont = 1;
+				String nuevaLineaObtenida;
+				String lineasJuntas = "";
+								
+				while( lector.hasNext() ) {
+					nuevaLineaObtenida = lector.nextLine() + " \n";
+					lineasJuntas = lineasJuntas + nuevaLineaObtenida; //en este punto del codigo, en cada ciclo se ha agregado un salto de linea por la instruccion anterior, por lo tanto cuando termine el ciclo el puntero estara en la linea siguiente del ultimo caracter que se escribio
+					cont++;
+				}//fin del while				
+				lector.close();
+				lineasJuntas = lineasJuntas + s2 + "\n";
+				System.out.println( lineasJuntas + "TIENE " + (cont) + " LINEAS.............................................................................................................................................................." );
+				escritor = new Formatter( supuestoArchivo );
+				escritor.format( "%s",lineasJuntas );
+				escritor.close();	
+			}else {
+				escritor = new Formatter( supuestoArchivo ); //se declara fuera del condicional ya que si o sí se usa el FORMATTER
+				System.out.println( "Claro que NO existe!!!!.....\n...debe crearse..." );
+				escritor.format( "se ha borrado todo el puto contenido que tenia, y en su lugar se ha escrito esta linea %d", 2 ); // escribe la cadena de caracteres en la direccion del archivo
+				escritor.close();
+			}//fin del if
+			
+		} catch ( IOException e ) {
+			System.err.println( "---> PROBLEMA DE ENTRADA/SALIDA DE DATOS <---" );
+			e.printStackTrace();
+		} finally {
+			System.out.println( "Siempre se ejecuta la clausula finally" );
+			
+		} //fin del manejo de excepciones
+
+		System.out.println( "\ntermina: escribirEnCola(), AnaLaAnalista\n" );
+	} //fin del metodo
+	
 	
 	
 	public boolean esArbolante( String s ) { //metodo al que pasandole la ruta absoluta o relativa, devuelve TRUE si el archivo da origen a un arbol.... si el archivo no existe el manejador de excepciones hace lo propio
@@ -179,8 +230,6 @@ public class AnaLaAnalista {
 						}//fin del ELSE
 					}//fin del wile
 					System.out.println( "\n\n\n\n\n" );
-
-					
 				} catch ( IOException e ) {	
 					System.err.println("NO SE HA PODIDO ABRIR EL BUFFEREDREADER");
 					e.printStackTrace();
@@ -238,18 +287,586 @@ public class AnaLaAnalista {
 		boolean valorDeRetorno = false;
 		String carpMadreDirAbs = "/home/omnitr3x3000/git/AppHotelByrat/src/appHversion1_3/"; //direccion absoluta de la carpeta madre
 		File supuestoArchi = new File( carpMadreDirAbs + s );
-
 		valorDeRetorno = supuestoArchi.exists();
-		System.out.printf("%s ", supuestoArchi.exists()? "SI SE HA ENCONTRADO EL ARCHIVO!!":"NO SE HA ENCONTRADO EL ARCHIVO!!" );
-		
+		System.out.printf("%s ", valorDeRetorno ? "SI SE HA ENCONTRADO EL ARCHIVO!!":"NO SE HA ENCONTRADO EL ARCHIVO!!" );
 		
 		System.out.println( "termina: versieisteArchivoEnCarpeta(), AnaLaAnalista" );
 		return valorDeRetorno;
-	}//fin del metodo BUSCAR ARCHIVO EN LA CARPETAic static boolean intentarCrearArchivoBlanko( String s ) { //recibe por parametro EL PURITITO NOMBRE del archivo, considerar si se está usando ruta absoluta o relativa 
+	}//fin del metodo BUSCAR ARCHIVO EN LA CARPETA
+	
 	
 	
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * siguele bajando krnal
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * ya kasi
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	class Acontecimiento { //clase que modela la entradaDeRegistro mas basica que existe con 5 datos, de esta clase heredan otras, que son registros mas completos
+
+		protected int fecha;
+		protected int hora;
+		protected String usuario;
+		protected String metodo;
+		protected String cod_A;
+		
+		public Acontecimiento( int i1, int i2, String s1, String s2, String s3 ) {
+			this.fecha = i1;
+			this.hora = i2;
+			this.usuario = s1;
+			this.metodo = s2;
+			this.cod_A = s3;	
+		}//fin del constructor con parametos
+		
+		
+		
+		
+		public Acontecimiento() {
+			this.fecha = 0;
+			this.hora = 0;
+			this.usuario = "inex";
+			this.metodo = "inex";
+			this.cod_A = "inex";	
+		}//fin del constructor por defecto
+		
+		
+		
+		
+		public int getFecha() {
+			return this.fecha;
+		}
+		public void setFecha( int i ) {
+			this.fecha = i;
+		}
+		
+	}//fin de clase que modela un Acontecimiento
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	class Informativo extends Acontecimiento {
+		
+		protected Acontecimiento precursorA; //este objeto contiene (5 datos) informacion en sus atributos que podemos resctar desde los metodos de esta clase heredera
+		protected char tipo;
+		protected String deskrp;
+		protected String cod_I;
+		
+		
+		public Informativo( Acontecimiento a, char c, String s1, String s2 ) {
+			
+			this.precursorA = a;
+			this.tipo = c;
+			this.deskrp = s1;
+			this.cod_I = s2;	
+		}//fin del constructor
+		
+		
+		public Informativo() {
+			this.precursorA = null;
+			this.tipo = 'a';
+			this.deskrp = "inex";
+			this.cod_I = "inex";
+		}//fin del constructor
+		
+	}//fin de clase que modela un Acontecimiento Informativo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	class Contable extends Informativo {
+		
+		protected Informativo precursorI; //este objeto contiene (5 + 3 datos) informacion en sus atributos que podemos resctar desde los metodos de esta clase heredera
+		protected String concepto;
+		protected boolean sumaoresta;
+		protected float cantidad;
+		protected String cod_C;
+		//este objeto contiene (5 datos) informacion en sus atributos que podemos resctar desde los metodos de esta clase heredera
+		
+		
+		public Contable( Informativo i , String s, boolean b, float f, String c ) { //De preferencia: siempre llamar a este metodo,y no al constructor por defecto 
+			this.precursorI = i;
+			this.concepto = s;
+			this.sumaoresta = b;
+			this.cantidad = f;
+			this.cod_C = c;
+		}//fin del constructor con cuatro argumentos
+		
+
+		public Contable() {
+			this.precursorI = null;
+			this.concepto = "inex";
+			this.sumaoresta = false;
+			this.cantidad = 0;
+			this.cod_C = "inex";
+		}//fin del constructor por defecto
+		
+		
+		
+		
+		
+	}//fin de clase que modela un Acontecimiento Informativo Contable
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

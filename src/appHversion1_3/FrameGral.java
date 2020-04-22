@@ -31,6 +31,10 @@ public class FrameGral extends JFrame implements ActionListener {
 	private AnaLaAnalista analister;
 	private String unDocCualquiera = "nuevoDocumentoDePrueba.txt"; //cadena que representa SOLAMENTE EL EL NOMBRE del archivo que se está probando
 	
+	private String d_a_Raiz = "src/appHversion1_3/"; //siglas de DIRECCION ABSOLUTA DEL DIRECTORIO RAIZ
+	private String d_r_c_Bases = d_a_Raiz + "bases/"; //siglas de DIRECCION RELATIVA DE BASES
+	private String d_r_c_AudioVisual = d_a_Raiz + "audioVisual/"; //siglas de DIRECCION RELATIVA DE ARCHIVOS UTILIZABLES
+	
 	
 	public FrameGral() {
 		this.inicilizarAtributosYconfigInic(); // 1) PRIMERITO DE TODOS LO METODOS, se deben tener la menor cantidad de metodos invocados aqui en el constructor para reducir las lineas de codigo, y aumentar lo entendibilidad 
@@ -43,7 +47,7 @@ public class FrameGral extends JFrame implements ActionListener {
 	
 	private void inicilizarAtributosYconfigInic() {
 		//INICILIZACIONES DE ATRIBUTOS
-		this.pnlCentral = new PanelUnikoydif(); //manda a llamar al constructor que hace mucho para dibujar la mayor parte de la interfaazGraf
+		this.pnlCentral = new PanelUnikoydif(); //manda a llamar al constructor que contiene variadas instrucciones para dibujar la mayor parte de la interfaazGraf
 		this.pnCentralContras = new JPanel(); //hacer una clase especial que pretenda mejorar la seguridad del programa
 		this.analister = new AnaLaAnalista(); //clase que hace todo tipo de calculos y backend
 		this.barajaAcceso = new CardLayout( 20,20 ); //Auxiliar del panelDeContraseñas
